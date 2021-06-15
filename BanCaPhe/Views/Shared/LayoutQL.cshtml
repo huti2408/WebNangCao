@@ -1,0 +1,242 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.js"></script>
+    <link href="@Url.Content("~/Content/tch.min.css")" rel="stylesheet" type="text/css" media="all">
+    <link href="@Url.Content("~/Content/styles.css")" rel="stylesheet" type="text/css" media="all">
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/Font/fontawesome-free-5.15.2-web/css/all.min.css" />
+    <link rel="stylesheet" href="@Url.Content("~/CSS/web.css")" type="text/css" />
+    
+    <style>
+        .navigation {
+            height: 70px;
+            background: #262626;
+        }
+
+        .brand {
+            position: absolute;
+            padding-left: 20px;
+            float: left;
+            line-height: 70px;
+            text-transform: uppercase;
+            font-size: 1.4em;
+        }
+
+            .brand a, .brand a:visited {
+                color: #fff;
+                text-decoration: none;
+            }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0;
+            font-size:23px;
+            padding-left:15px;
+            
+
+        }
+        .nav-list{
+            margin-left:20px
+        }
+        nav {
+            float: right;
+        }
+
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+                nav ul li {
+                    float: left;
+                    position: relative;
+                }
+
+                    nav ul li a, nav ul li a:visited {
+                        display: block;
+                        padding: 0 20px;
+                        line-height: 70px;
+                        background: #262626;
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+                        nav ul li a:hover, nav ul li a:visited:hover {
+                            background: #2581dc;
+                            color: #ffd800;
+                        }
+
+                        nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
+                            padding-left: 4px;
+                            content: ' ▾';
+                        }
+
+                    nav ul li ul li {
+                        min-width: 190px;
+                    }
+
+                        nav ul li ul li a {
+                            padding: 15px;
+                            line-height: 20px;
+                        }
+
+        .nav-dropdown {
+            position: absolute;
+            display: none;
+            z-index: 1;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        }
+        /* Mobile navigation */
+        .nav-mobile {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #262626;
+            height: 70px;
+            width: 70px;
+        }
+
+        #nav-toggle {
+            position: absolute;
+            left: 18px;
+            top: 22px;
+            cursor: pointer;
+            padding: 10px 35px 16px 0px;
+        }
+
+            #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
+                cursor: pointer;
+                border-radius: 1px;
+                height: 5px;
+                width: 35px;
+                background: #fff;
+                position: absolute;
+                display: block;
+                content: '';
+                transition: all 300ms ease-in-out;
+            }
+
+                #nav-toggle span:before {
+                    top: -10px;
+                }
+
+                #nav-toggle span:after {
+                    bottom: -10px;
+                }
+
+            #nav-toggle.active span {
+                background-color: transparent;
+            }
+
+                #nav-toggle.active span:before, #nav-toggle.active span:after {
+                    top: 0;
+                }
+
+                #nav-toggle.active span:before {
+                    transform: rotate(45deg);
+                }
+
+                #nav-toggle.active span:after {
+                    transform: rotate(-45deg);
+                }
+
+        article {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+         @*@media only screen and (max-width: 798px) {
+	 .nav-mobile {
+		 display: block;
+	}
+	 nav {
+		 width: 100%;
+		 padding: 70px 0 15px;
+	}
+	 nav ul {
+		 display: none;
+	}
+	 nav ul li {
+		 float: none;
+	}
+	 nav ul li a {
+		 padding: 15px;
+		 line-height: 20px;
+	}
+	 nav ul li ul li a {
+		 padding-left: 30px;
+	}
+	 .nav-dropdown {
+		 position: static;
+	}
+}
+ @media screen and (min-width: 799px) {
+	 .nav-list {
+		 display: block !important;
+	}
+}*@
+    </style>
+</head>
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+            <div class="brand col-lg-3">
+                <a href="/QuanLy"><img src="~/Content/Image/Logo.jpg" width="70" height="70" /></a>
+            </div>
+            <nav>
+                <ul class="nav-list">
+
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index", "QuanLy")"><strong>Thực Đơn</strong></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="nhanvien" href="@Url.Action("Index", "NhanViens")"><strong>Nhân Viên</strong></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","DonHang")"><strong>Đơn hàng</strong></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","KhachHang")"><strong>Khách hàng</strong></a>
+                    </li>
+                    <li>
+                        @if (Session["username"] != null)
+                        {
+                            <div></div>
+                            <a class="nav-link" href="@Url.Action("DangXuat", "QuanLy")">
+                                <i class="fas fa-user"></i>Hi, @Session["username"] Đăng Xuất
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="@Url.Action("Login", "QuanLy")"><strong>Đăng nhập</strong></a>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    
+</body>
+
+</html>

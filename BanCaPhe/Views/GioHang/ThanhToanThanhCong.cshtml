@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ThanhToanThanhCong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .textdeli{
+        color: #0094ff;
+        font-size:20px
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="text-center" style="margin:20px 0 90px ">
+            <h1>CẢM ƠN QUÝ KHÁCH ĐÃ ỦNG HỘ</h1>
+
+            <img src="~/Content/Image/delivery-staff_68708-255.jpg" style="width:150px;height:150px;margin-bottom:20px" />
+            
+            <div class="textdeli">Đơn hàng của bạn sẽ đến nhanh nhất có thể.<br/>
+            Địa chỉ nhận hàng: @TempData["DiaChi"]<br />
+            SĐT: @TempData["sdt"]
+            </div>
+            <a href="@Url.Action("Index","SanPham")" class="btn btn-link"><i class="fas fa-arrow-left"></i> Quay về trang chủ</a>
+        </div>
+    </div>
+
+</div>
+
+
+

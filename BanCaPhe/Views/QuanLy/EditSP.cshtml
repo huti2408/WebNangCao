@@ -1,0 +1,84 @@
+﻿@model BanCaPhe.Models.ThucUong
+
+@{
+    ViewBag.Title = "EditSP";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+
+
+<style>
+    center {
+        font-size: 40px;
+        margin-top: 20px;
+        color: #b72020;
+    }
+
+      button#submit {
+        padding: 7px;
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+        position: relative;
+        cursor: pointer;
+        background: #b6ff00
+    }
+</style>
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div class="row">
+            <center><strong>Chỉnh sửa</strong></center>
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group-sm">
+
+                    <div>
+                        <p>ID:</p>
+                        @Html.EditorFor(s => s.IdCF, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.IdCF, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        <p>Tên:</p>
+                        @Html.EditorFor(s => s.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        <p>Loại nước:</p>
+                        <div>
+                            @Html.DropDownListFor(s => s.IdLoaiNuoc, ViewBag.loainuoc as SelectList, "Loại nước", new { @class = "form-control", @onchange = "onInput_Phim('loai')" })
+                            @Html.ValidationMessageFor(model => model.IdLoaiNuoc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div>
+                        <p>Hình ảnh (URL):</p>
+                        @Html.EditorFor(s => s.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        <p>Đơn Giá:</p>
+                        @Html.EditorFor(s => s.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+                    </div>
+                    <br />
+                    @using (Html.BeginForm("EditSP", "QuanLy", FormMethod.Post))
+                    {
+                        <button id="submit" type="submit" name="submit">Xác Nhận</button>
+
+                    }
+                    <p></p>
+
+                    @using (Html.BeginForm("DeleteSP", "QuanLy", FormMethod.Post))
+                    {
+                        <input type="hidden" value="@Model.IdCF" name="idCF_Delete" />
+                        <button type="submit" class="btn btn-danger" style="width:100%; border-radius:10px">Xóa</button>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

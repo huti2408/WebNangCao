@@ -1,0 +1,172 @@
+﻿@model BanCaPhe.Models.NhanVien
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+
+<style>
+    * {
+        
+        font-family: 'Open Sans', sans-serif;
+    }
+
+   
+
+
+  
+
+    h2 {
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    i.fab.fa-app-store-ios {
+        display: block;
+        margin-bottom: 50px;
+        font-size: 28px;
+    }
+
+  
+
+    .textbox {
+        margin: 0 auto 0 auto;
+        width: 70%
+    }
+
+    input {
+        display: block;
+        border-bottom: 2px solid #cc3333;
+        margin-top: 6px;
+        margin-bottom: 10px;
+        outline-style: none;
+    }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 70%;
+        }
+
+        input#submit {
+            padding: 7px;
+            width: 50%;
+            border-radius: 10px;
+            border: none;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            background: linear-gradient(to right, #cc0033, #ff0033);
+        }
+
+            input#submit:hover {
+                background: linear-gradient(to right, #ff0000, #cc0000);
+            }
+
+    .DangKy {
+        border-radius: 15px;
+        box-shadow: 0px 0px 14px 0px grey;
+        background-color: white;
+        align-content: center;
+        margin: 40px auto 0 auto;
+        align-items: center;
+        width: 30%;
+        height: 450px;
+    }
+
+    td {
+        margin: 0;
+        padding: 0;
+        text-align: right;
+        vertical-align: middle;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            <table class="DangKy">
+                <tr>
+                    <td colspan="2">
+                        <center><h2>Đăng ký</h2></center>
+                        <center><i style="font-size:30px;" class="fas fa-coffee"></i></center>
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td><label>Username</label></td>
+                    <td>
+                        @Html.TextBoxFor(s => s.MaNV, htmlAttributes: new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => model.MaNV, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td><label>Mật khẩu</label></td>
+                    <td>
+
+                        @Html.PasswordFor(s => s.MatKhau, htmlAttributes: new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Xác nhận mật khẩu</label>
+                    </td>
+                    <td>
+                        @Html.PasswordFor(s => s.ConfirmMK, htmlAttributes: new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => model.ConfirmMK, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Họ và tên</label>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(s => s.TenNV, htmlAttributes: new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Số điện thoại</label>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(s => s.SDT, htmlAttributes: new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Vị trí</label>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(s => s.ViTri, htmlAttributes: new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => model.ViTri, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Ca</label>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(s => s.Ca, htmlAttributes: new { @class = "textbox" })
+                        @Html.ValidationMessageFor(model => model.Ca, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr><td colspan="2"><input id="submit" type="submit" name="submit" value="Xác nhận"></td></tr>
+            </table>
+
+        </div>
+
+
+    </div>
+}

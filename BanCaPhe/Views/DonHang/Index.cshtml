@@ -1,0 +1,116 @@
+﻿@using PagedList.Mvc;
+@using BanCaPhe.Models;
+@model PagedList.PagedList<HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<style>
+    .PhanTrang {
+        display: inline;
+        text-align: center;
+        background-color:none;
+    }
+    td,th{
+        text-align:center;
+       padding:15px
+    }
+    th{
+        font-size:22px;
+        color: #0094ff
+    }
+    tr {
+        border: 1px solid rgb(255 216 0);
+        padding: 5px;
+    }
+    .TK {
+        border: 1px solid #6ec848;
+        background-color: #b3fe93;
+        padding:10px 0 0 20px;
+    }
+    .TextTK{
+        font-size:30px;
+        color: #0094ff;
+    }
+    .icon{font-size:40px;
+          color: #0c6fb6
+    }
+    .value {
+        text-align: center;
+        font-size: 30px;
+        color: #0c6fb6
+    }
+    .ThongKe{margin-bottom:150px;}
+</style>
+<div class="container">
+    <div class="row">
+        <center><h1>ĐƠN HÀNG</h1></center>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm mã đơn hàng" style="margin-bottom:20px" >
+        <table id="myTable">
+            <tr style="background-color:rgb(255 216 0 / 0.66)">
+                <th>Mã đơn hàng</th>        
+                <th>Khách hàng</th>
+                <th>Thời gian đặt</th>
+                <th>Địa chỉ giao</th>
+                <th>Tổng tiền</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr style="background-color:white">
+            <td style="font-size:16px">@Html.DisplayFor(s => item.Id)</td>
+            <td>@Html.DisplayFor(s => item.KhachHang.Ten)</td>
+            <td>@Html.DisplayFor(s => item.ThoiGian)</td>
+            <td>@Html.DisplayFor(s => item.DiaChiGiao)</td>
+            <td>@Html.DisplayFor(s => item.Tong) Đ</td>
+            <td class="btn btn-info"><a href=" @Url.Action("ChiTiet", new { Id = item.Id })">Chi Tiết</a> </td>
+        </tr>
+            }
+            <tr style="border:none">
+                <td colspan="6">
+                    <div class="PhanTrang"> @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))</div>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <center><h1>THỐNG KÊ</h1></center>
+        <div class="ThongKe">
+            <div class="col-lg-6 TK">
+                <div class="icon col-lg-2"><i class="fas fa-dollar-sign"></i></div>
+                <div class="col-lg-10">
+                    <div class="TextTK"><strong>Doanh thu: </strong></div>
+                    <div class="value"><strong>@Model.Sum(s => s.Tong)Đ</strong></div> <br />
+
+                </div>
+            </div>
+            <div class="col-lg-6 TK">
+                <div class="icon col-lg-2"><i class="fas fa-shopping-cart"></i></div>
+                <div class="col-lg-10">
+                    <div class="TextTK"><strong>Số đơn hàng đã bán:</strong></div>
+                    <div class="value"><strong>@Model.Count</strong></div> <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

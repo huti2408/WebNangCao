@@ -1,0 +1,58 @@
+﻿@using BanCaPhe.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ThucUong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .PhanTrang{
+        display:inline;
+        text-align:center;
+        
+    }
+</style>
+<!-- Menu -->
+<img src="https://www.phuclong.com.vn/uploads/category/395ce6d344e358-ca282587164be515bc5a.jpg" style="width:100%" />
+<section class="menu_home" style="">
+    <svg class="menu_bg_top"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#bg_1553"></use></svg>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <h2 class="menu_home_title line_after_heading section_heading ">Menu </h2>
+            </div>
+            @{Html.RenderAction("LoaiNuoc", "SanPham");}
+            
+            <div class="clearfix"></div>
+            <div class="menu_list_home flex_wrap display_flex">
+                @foreach (var pro in Model)
+                {
+                    if (pro.IdCF != null)
+                    {
+                        <div class="menu_item">
+                            <div class="menu_item_image">
+                                <a href="#">
+                                    <img src="@Html.DisplayFor(item => pro.HinhAnh)">
+                                </a>
+                            </div>
+                            <div class="menu_item_info">
+                                <strong> <a href="#" style="font-size:20px">@Html.DisplayFor(item => pro.Ten)</a></strong>
+                                <div class="price_product_item"> @Html.DisplayFor(item => pro.DonGia) đ</div>
+                                <a class="menu_item_action animate_btn" href="/GioHang/ThemVaoGio/@pro.IdCF" title="Mua Ngay">Mua ngay</a>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            </div>
+            <div class="PhanTrang">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- End Menu -->

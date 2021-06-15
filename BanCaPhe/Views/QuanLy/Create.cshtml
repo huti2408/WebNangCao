@@ -1,0 +1,67 @@
+﻿@model BanCaPhe.Models.ThucUong
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+
+<style>
+    center{font-size:40px;
+           margin-top:20px;
+           color: #b72020;
+           }
+    input#submit {
+                padding: 7px;
+                width: 100%;
+                border-radius: 10px;
+                border: none;
+                position: relative;              
+                cursor: pointer;
+                background: #b6ff00
+            }
+</style>
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div class="row">
+            <center><strong>Thêm Món</strong></center>
+            @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group-sm">
+
+                <div>
+                    <p>ID:</p>
+                    @Html.EditorFor(s => s.IdCF, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IdCF, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    <p>Tên:</p>
+                    @Html.EditorFor(s => s.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    <p>Loại nước:</p>
+                    <div>
+                        @Html.DropDownListFor(s => s.IdLoaiNuoc, ViewBag.loainuoc as SelectList, "Loại nước", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdLoaiNuoc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div>
+                    <p>Hình ảnh (URL):</p>
+                    @Html.EditorFor(s => s.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                </div>
+                <div>
+                    <p>Đơn Giá:</p>
+                    @Html.EditorFor(s => s.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+                </div>
+                <br/>
+                <input id="submit" type="submit" name="submit" value="Xác Nhận">
+            </div>
+        </div>
+        </div>
+    </div>
+}
+
+

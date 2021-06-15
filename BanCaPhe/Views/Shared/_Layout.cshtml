@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+
+<html lang="vi" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Trà Sữa Monne</title>
+    <!--------------CSS----------->
+    <link href="@Url.Content("~/Content/tch.min.css")" rel="stylesheet" type="text/css" media="all">
+    <link href="@Url.Content("~/Content/styles.css")" rel="stylesheet" type="text/css" media="all">
+    <style>
+        *{font-family: 'Open Sans', sans-serif;}
+    </style>
+</head>
+<body>
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="logo_wrap">
+                            <a href="/SanPham"><img style="margin-top:5px" src="@Url.Content("~/Content/Image/Logo.jpg")" width="50" height="50" /></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 header_menu">
+                        <ul class="clearfix  navbar-right">
+                            <li class="">
+                                @Html.ActionLink("Menu", "Index", "SanPham")
+                            </li>
+                            <li>    
+                                @Html.ActionLink("Giỏ hàng","ShowCart","GioHang")
+                            </li>
+                            <li>
+                                @using (Html.BeginForm("Index", "SanPham", FormMethod.Get))
+                                {
+                                    @Html.TextBox("Search")
+                                    <button class="btn " type="submit" style="height:38px; margin-bottom:5px"><i class="fas fa-search"></i></button>
+                                }
+                            </li>
+                            @if (Session["khachhang"] == null)
+                            {
+                                <li class=""><a href="@Url.Action("DangNhap", "SanPham")">Đăng nhập</a></li>
+                            }
+                            else
+                            {
+                                <li class=""><a href="@Url.Action("DangXuat", "SanPham")">Hi @Session["khachhang"] ,Đăng Xuất</a></li>
+                            }
+                        </ul>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 footer_col">
+                        <svg class="logo_footer">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-footer"></use>
+                        </svg>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 footer_col">
+                        <h3 class="footer_title">ABOUT</h3>				<ul class="footer_linklists">
+                            <li><a href="#">Về Chúng Tôi</a></li>
+                            <li><a href="#">Hạt Cà Phê The Coffee House</a></li>
+                            <li><a href="#" title="Blog">Blog</a></li>
+                            <li><a href="#" title="Cơ Hội Nghề Nghiệp">Cơ Hội Nghề Nghiệp</a></li>
+                            <li><a href="#" title="Cửa Hàng">Cửa Hàng</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 footer_col">
+                        <div class="hotline_footer">
+                            <h3 class="footer_title">Always-on Support</h3><p>Delivery 1800 6936  (07:00-21:00)</p><p>Support 028.71.087.088 (07:00-21:00) </p>
+                        </div>
+                        <div class="address_footer">
+                            <h3 class="footer_title">Address</h3><p>
+                                828 Su Van Hanh, District 10, Ho Chi Minh, Vietnam.
+                                <br>
+                                Head Office 2: Floor 3 &amp; 4  The Hub Building - 195/10E Dien Bien Phu, Ward 15, Binh Thanh District, Ho Chi Minh, Vietnam.
+                            </p><p>+842871 078 079</p><p>hi@thecoffeehouse.vn</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 footer_col">
+                        <h3 class="footer_title">Delivery</h3>				<ul class="footer_linklists">
+                            <li><a href="#" title="Shipping methods">Shipping methods</a></li>
+                            <li><a href="#" title="Payment">Payment</a></li>
+                            <li><a href="#" title="Cash voucher">Cash voucher</a></li>
+                            <li><a href="#" title="Return">Return</a></li>
+                            <li><a href="#" title="Exchange">Exchange</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="copyright_footer display_flex justify-content-spbetween">
+                            <div class="copyright_text copyright_col">Copyright © 2020 The Coffee House. All rights reserved.</div>					<div class="copyright_menu copyright_col">
+                                <ul>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Terms of Use</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+</body>
+</html>

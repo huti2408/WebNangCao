@@ -1,0 +1,96 @@
+﻿@model IEnumerable<BanCaPhe.Models.KhachHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+<style>
+    td, th {
+        text-align: center;
+        font-size: 18px;
+        padding:10px
+    }
+    th{
+        font-size:22px;
+        background-color:#33fba4;
+        color: white
+    }
+    tr {
+        border: 1px solid #33fba4;
+    }
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <center><h1>Danh sách khách hàng</h1></center>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm username" style="margin-bottom:20px">
+        <table id="myTable">
+            <tr>
+                <th>
+                    Username
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ten)
+                </th>
+                <th>
+                    Mật khẩu
+                </th>
+                <th>
+                    SĐT
+                </th>
+                <th>
+                    Địa Chỉ
+                </th>
+                <th></th>
+                
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(s => item.MaKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ten)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.MaKH})"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.MaKH})"><i class="fas fa-trash"></i></a>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,36 @@
+﻿@using BanCaPhe.Models
+@model List<LoaiNuoc>
+    <style>
+        .cate {
+            font-size: 20px;                    
+            background-color:yellow;
+            text-align:center ;
+            margin-top:5px;
+            border:1px solid #808080
+            
+        }
+        li {
+            font-size: 30px;
+           
+        }
+        
+        .loai {
+            
+            width: 70%;
+            
+        }
+    </style>
+    
+    <ul class="loai">
+       <li><center> Loại Nước</center></li>
+        @{
+            foreach(var item in Model)
+            {
+               <li class="cate">
+                    @Html.ActionLink(item.TenLoai,"Index","QuanLy", new { loai = item.id.Trim() },"")
+                </li>
+                <br/>
+            }
+        }
+    </ul>
+

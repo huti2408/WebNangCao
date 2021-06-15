@@ -1,0 +1,156 @@
+﻿@model IEnumerable<BanCaPhe.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+<style>
+    td, th {
+       text-align:center;
+       font-size:18px;
+       padding: 10px
+    }
+   tr{
+        border:1px solid black;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <center>
+            <h1>Danh Sách Nhân Viên</h1>
+        </center>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Tìm username" style="margin-bottom:20px">
+        <table id="myTable">
+            <tr style="background-color:#6cc0fe">
+                <th>
+                    Username
+                </th>
+                <th>
+                    Họ Và Tên
+                </th>
+                <th>
+                    Mật Khẩu
+                </th>
+                <th>
+                    SĐT
+                </th>
+                <th>
+                    Vị Trí
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ca)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.ViTri == "Shipper")
+                {
+                    <tr style="background-color:yellow">
+                        <td>
+                            @Html.DisplayFor(modelitem => item.MaNV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenNV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatKhau)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ViTri)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ca)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.MaNV})"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.MaNV})"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+                else if (item.ViTri == "Pha Chế")
+                {
+                    <tr style="background-color: #96ff6a">
+                        <td>
+                            @Html.DisplayFor(modelitem => item.MaNV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenNV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatKhau)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ViTri)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ca)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.MaNV})"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.MaNV})"><i class="fas fa-trash"></i></a>
+
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelitem => item.MaNV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenNV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MatKhau)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ViTri)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ca)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="@Url.Action("Edit", new { id = item.MaNV})"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.MaNV})"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </table>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

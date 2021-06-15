@@ -1,0 +1,72 @@
+﻿@model BanCaPhe.Models.NhanVien
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div>
+            <h3>Xác nhận xóa nhân viên @Model.TenNV ?</h3>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(s => s.MaNV)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MaNV)
+                </dd>
+                <dt>
+                    Họ và tên
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenNV)
+                </dd>
+
+                <dt>
+                    Mật khẩu
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MatKhau)
+                </dd>
+
+                <dt>
+                    SĐT
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SDT)
+                </dd>
+
+                <dt>
+                    Ca
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ca)
+                </dd>
+                <dt>
+                    Vị trí
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ViTri)
+                </dd>
+            </dl>
+            <br />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa" class="btn btn-danger" />
+                    <a class="btn btn-primary" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i> Quay về</a>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>

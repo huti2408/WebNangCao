@@ -1,0 +1,117 @@
+﻿@model BanCaPhe.Models.KhachHang
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        border: none;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+        overflow: hidden;
+        background-color: #ededed;
+    }
+
+    .to {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: minmax(100px,auto);
+    }
+
+    .form {
+        border: 1px solid #80808000;
+        grid-column: 6/9;
+        grid-row: 3;
+        height: 470px;
+        width: 292px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        border-radius: 15px;
+        box-shadow: 0px 0px 14px 0px grey;
+        background-color: white;
+    }
+
+    h2 {
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    i.fab.fa-app-store-ios {
+        display: block;
+        margin-bottom: 50px;
+        font-size: 28px;
+    }
+
+    label {
+        margin-left: -126px;
+        display: block;
+        font-weight: lighter;
+    }
+
+    .textbox {
+        display: block;
+        border-bottom: 2px solid #cc3333;
+        margin-top: 6px;
+        margin-bottom: 10px;
+        width: 70%;
+        outline-style: none;
+    }
+
+    a#submit {
+        margin-top: 5px
+    }
+
+    input[type="text"] {
+        padding: 5px;
+        width: 70%;
+    }
+
+    input#submit {
+        padding: 7px;
+        width: 50%;
+        border-radius: 10px;
+        border: none;
+        bottom: 10px;
+        cursor: pointer;
+        background: linear-gradient(to right, #cc0033, #ff0033);
+    }
+
+        input#submit:hover {
+            background: linear-gradient(to right, #ff0000, #cc0000);
+        }
+</style>
+<title>Đăng nhập</title>
+
+<link rel="stylesheet" href="fontawesome-free-5.15.3-web\css\all.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,400i|Noto+Sans:400,400i,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="to">
+        <div class="form">
+            <h2>Đăng nhập</h2>
+            <i class="fas fa-coffee"></i>
+            <label style="margin-left: -150px;">Username</label>
+            @Html.TextBoxFor(s => s.MaKH, htmlAttributes: new { @class = "textbox" })
+            @Html.ValidationMessageFor(s => s.MaKH, "", new { @class = "text-danger" })
+
+            <label style="margin-left: -150px;">Mật khẩu</label>
+            @Html.PasswordFor(s => s.MatKhau, htmlAttributes: new { @class = "textbox" })
+            @Html.ValidationMessageFor(s => s.MatKhau, "", new { @class = "text-danger" })
+            
+            <input id="submit" type="submit" name="submit" value="Đăng nhập">
+            <a href="/SanPham/DangKy" id="submit">Chưa có tài khoản? Đăng Ký Ngay. </a>
+        </div>
+    </div>
+}
+

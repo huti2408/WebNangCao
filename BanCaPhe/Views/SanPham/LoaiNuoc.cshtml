@@ -1,0 +1,28 @@
+﻿@model List<BanCaPhe.Models.LoaiNuoc>
+<style>
+    .liLN {
+        display: inline;
+        font-size: 25px;
+        padding: 10px;  
+       
+        margin-right:10px;
+    }
+    .liLN:hover {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        color: #ff6a00
+    }
+    ul{
+        
+       margin-bottom:25px;
+    }
+</style>
+<center>
+    <ul>
+        
+        @foreach (var item in Model)
+        {
+            <li class="liLN">@Html.ActionLink(item.TenLoai, "Index", "SanPham", new { loai = item.id.Trim() }, "")</li>
+        }
+    </ul>
+</center>

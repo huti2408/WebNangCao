@@ -1,0 +1,123 @@
+﻿@model BanCaPhe.Models.KhachHang
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+
+    .nhap {
+        display: block;       
+        margin-top: 6px;
+       padding-right:20px;
+        outline-style: none;
+    }
+   
+
+  
+
+
+    .textbox {
+        margin: 0 auto 0 auto;
+        width: 80%
+    }
+
+
+    .DangKy {
+        border-radius: 15px;
+        box-shadow: 0px 0px 14px 0px grey;
+        background-color: white;
+        align-content: center;
+        margin: 40px auto 20px auto;
+        align-items: center;
+        width: 30%;
+        height: 450px;
+    }
+
+    td {
+        margin: 0;
+        padding: 0;
+        text-align: right;
+        vertical-align: middle;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            <table class="DangKy">
+                <tr>
+                    <td colspan="2">
+                        <center><h2>Đăng ký khách hàng</h2></center>
+                        <center><i style="font-size:30px;" class="fas fa-coffee"></i></center>
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td><label>Username</label></td>
+                    <td class="nhap">
+
+                        @Html.TextBoxFor(s => s.MaKH, htmlAttributes: new { @class = "textbox" })
+                    </td>
+                </tr>
+
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td><label>Mật khẩu</label></td>
+                    <td class="nhap">
+
+                        @Html.PasswordFor(s => s.MatKhau, htmlAttributes: new { @class = "textbox" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td >
+                        <label>Xác nhận mật khẩu</label>
+                    </td>
+                    <td class="nhap">
+                        @Html.PasswordFor(s => s.ConfirmMK, htmlAttributes: new { @class = "textbox" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Họ và tên</label>
+                    </td>
+                    <td class="nhap">
+                        @Html.TextBoxFor(s => s.Ten, htmlAttributes: new { @class = "textbox" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Số điện thoại</label>
+                    </td>
+                    <td class="nhap">
+                        @Html.TextBoxFor(s => s.SDT, htmlAttributes: new { @class = "textbox" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td>
+                        <label>Địa Chỉ</label>
+                    </td>
+                    <td class="nhap">
+                        @Html.TextBoxFor(s => s.DiaChi, htmlAttributes: new { @class = "textbox" })
+                    </td>
+                </tr>
+                <tr><td><p></p></td></tr>
+                
+                <tr><td colspan="2" style="text-align:center;"><input id="submit" class="btn btn-success" style="margin-bottom:10px; border-radius:10px; width:100px" type="submit" name="submit" value="Xác nhận"></td></tr>
+            </table>
+
+        </div>
+
+
+    </div>
+}
+

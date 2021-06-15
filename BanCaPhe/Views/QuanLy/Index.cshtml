@@ -1,0 +1,66 @@
+﻿@using PagedList.Mvc;
+@using BanCaPhe.Models;
+@model PagedList.PagedList<ThucUong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+
+<style>
+    .PhanTrang {
+        display: inline;
+        text-align: center;
+    }
+</style>
+<section class="menu_home">
+    <div class="container">
+       
+        <div class="row">
+            <center></center>
+            <div class=" col-lg-4">
+                <a class="btn btn-warning" style="width:190px;font-size:30px;margin-bottom:10px" href="@Url.Action("Create","QuanLy")">Thêm món</a>
+
+                @using (Html.BeginForm("Index", "QuanLy", FormMethod.Get))
+                {
+                    @Html.TextBox("Search")
+                    <button class="btn " type="submit" style="height:38px; margin-bottom:5px"><i class="fas fa-search"></i> Tìm kiếm</button>
+                }
+                <br />
+                @{ Html.RenderAction("LoaiNuoc", "QuanLy"); }
+            </div>
+
+
+            <div class="col-lg-8 menu_list_home flex_wrap display_flex">
+
+                @foreach (var pro in Model)
+                {
+                    if (pro.IdCF != null)
+                    {
+                        <div class="menu_item">
+                            <div class="menu_item_image">
+                                <a href="@Url.Action("EditSP", "QuanLy", new { id = pro.IdCF })">
+                                    <img src="@Html.DisplayFor(item => pro.HinhAnh)">
+                                </a>
+                            </div>
+                            <div class="menu_item_info" style="align-content: center;">
+                                <h3><a href="@Url.Action("EditSP", "QuanLy", new { id = pro.IdCF })">@Html.DisplayFor(item => pro.Ten)</a></h3>
+                                <div class="price_product_item"> @Html.DisplayFor(item => pro.DonGia) đ</div>
+
+                                <a href="@Url.Action("EditSP", "QuanLy", new { id = pro.IdCF })" class=" btn btn-success">Chỉnh sửa</a>
+
+                                <a class="btn btn-danger" href="@Url.Action("EditSP", "QuanLy", new { id = pro.IdCF })">Xóa</a>
+
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="PhanTrang col-lg-8">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+            </div>
+        </div>
+    </div>
+</section>
+

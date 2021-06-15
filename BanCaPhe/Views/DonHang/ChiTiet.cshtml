@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BanCaPhe.Models.ChiTietHD>
+
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/LayoutQL.cshtml";
+}
+<style>
+    th,td{text-align:center;
+          padding:10px;
+          font-size:16px;
+    }
+    th{font-size:18px}
+    tr{border: 1px solid black}
+</style>
+<div class="container">
+    <div class="row">
+        <center><h1>Chi Tiết </h1></center>
+        <table>
+            <tr style="background-color:rgb(0 255 33 / 0.40)">
+                <th>Tên món</th>
+                <th>Hình ảnh</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+            @foreach (var item in Model)
+            { 
+                
+                <tr>
+                    <td> @Html.DisplayFor(s => item.ThucUong.Ten)</td>
+                    <td><img src="@Html.DisplayFor(s=>item.ThucUong.HinhAnh)" style="width:75px;height:75px" /></td>
+                    <td>@Html.DisplayFor(s => item.soLuong)</td>
+                    <td>@Html.DisplayFor(s => item.ThucUong.DonGia)Đ</td>
+                    <td> @Html.DisplayFor(s => item.Thanhtien)Đ</td>                    
+                </tr>
+            }
+            <tr style="border:none">
+                <td colspan="5"><a class="btn btn-warning" href="@Url.Action("Index")"><i class="fas fa-arrow-left"></i> Quay về</a></td>
+            </tr>
+        </table>
+        
+    </div>
+</div>
+         
+            
+        
+            
